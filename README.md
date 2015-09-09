@@ -8,7 +8,7 @@ Assumes the mysql user and password are both 'root'.
 Current policy file is backed up at /etc/keystone/policy.json.v2
 Current endpoints are backed up at /etc/keystone/v2_endpoints.txt
 
-# monasca-keystone
+# monasca-keystone.sh
 Configures keystone with the monasca project, users, roles, services and endpoint.
 
 Requires both keystone and monasca hosts to be defined in /etc/hosts
