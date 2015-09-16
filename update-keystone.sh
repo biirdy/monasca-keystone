@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo 'Getting new policy file'
-wget -O /etc/keystone/policy.json.v3
+wget -O /etc/keystone/policy.json.v3 http://docs.jamie-bird.com/policy.v3cloudsample.json
 
 echo 'Changing policy file'
 cp /etc/keystone/policy.json /etc/keystone/policy.json.v2
