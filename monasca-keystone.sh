@@ -1,18 +1,14 @@
-if ! grep -q "monasca" /etc/hosts; then
-	echo "Monasca host does not exist. Please add to /etc/hosts"
-	exit 0
-fi
+$monasca=$(gethostip -d monasca)
 
-if ! grep -q "keystone" /etc/hosts; then
-	echo "keystone host does not exist. Please add to /etc/hosts"
-	exit 0
-fi
+if [ -z "$monasca"]; then 
+	echo "monasca host not set."
+	exit 1
+fi 
 
-export OS_IDENTITY_API_VERSION=3
-export OS_TENANT_NAME=admin
-export OS_USERNAME=admin
-export OS_PASSWORD=admin
-export OS_AUTH_URL=http://keystone:35357/v3
+if [ -z "$OS_AUTH_URL" ] && [ -z "$OS_TENANT_NAME" ] && [ -z "$OS_USERNAME" ] && [ -z "$OS_PASSWORD" ]; then 
+	echo "Either OS_TENANT_NAME, OS_USERNAME, OS_PASSSWORD, OS_AUTH_URL or OS_IDENTITY_API_VERSION not set."
+	exit 1
+fi   
 
 ## agent users service and endpoint  
 openstack project create --description 'Monasca project' monasca
